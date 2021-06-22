@@ -30,7 +30,7 @@ function draw() {
   mostraRaquete(xRaquete, yRaquete);
   mostraRaquete(xRaqueteOponente, yRaqueteOponente);
   movimentaMinhaRaquete();
-  //movimentaOponente();
+  movimentaOponente();
   colisaoRaqueteBolinha();
   colisaoRaquete(xRaquete, yRaquete);
   colisaoRaquete(xRaqueteOponente, yRaqueteOponente);
