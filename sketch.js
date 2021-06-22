@@ -10,7 +10,8 @@ let velYBolinha = 6;
 
 //variáveis da minha raquete
 let xRaquete = 5, yRaquete = 150, compRaquete = 10, altRaquete = 90;
-
+//variaveis oponente
+let xRaqueteOponente=585, yRaqueteOponente=190, velXOponente, velYOponente;
 
 let colidiu = false;
 
@@ -23,10 +24,13 @@ function draw() {
   desenhaBolinha();
   movimentaBolinha();
   colisaoBolinha();
-  desenhaMinhaRaquete();
+  mostraRaquete(xRaquete, yRaquete);
+  mostraRaquete(xRaqueteOponente, yRaqueteOponente);
   movimentaMinhaRaquete();
+  movimentaOponente();
   //colisaoRaqueteBolinha();
-  colisaoMinhaRaqueteBiblioteca();
+  colisaoRaquete(xRaquete, yRaquete);
+  colisaoRaquete(xRaqueteOponente, yRaqueteOponente);
 }
 
 //Bolinha
@@ -51,8 +55,8 @@ function colisaoBolinha() {
 
 //Minha raquete
 
-function desenhaMinhaRaquete() {
-  rect(xRaquete, yRaquete, compRaquete, altRaquete);
+function mostraRaquete(x, y) {
+  rect(x, y, compRaquete, altRaquete);
 }
 
 function movimentaMinhaRaquete() {
@@ -63,6 +67,12 @@ function movimentaMinhaRaquete() {
     yRaquete += 10;
   }
 }
+function movimentaOponente() {
+  velYOponente = yBolinha - yRaqueteOponente - 
+  compRaquete /2 -30;
+  yRaqueteOponente += velYOponente;
+}
+
 
 function colisaoRaqueteBolinha () {
   if (xBolinha - raio < xRaquete + compRaquete &&
@@ -72,8 +82,8 @@ function colisaoRaqueteBolinha () {
   }
 }
 
-function colisaoMinhaRaqueteBiblioteca () {
-  colidiu = collideRectCircle(xRaquete, yRaquete, compRaquete, altRaquete, xBolinha, yBolinha, raio);
+function colisaoRaquete (x, y) {
+  colidiu = collideRectCircle(x, y, compRaquete, altRaquete, xBolinha, yBolinha, raio);
   if (colidiu) {
     velXBolinha *= -1;
   }
